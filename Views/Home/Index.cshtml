@@ -1,8 +1,165 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+﻿<!-- Chatbot UI Section -->
+<div id="chat-container">
+    <button id="chat-toggle" onclick="toggleChat()">💬 Chat</button>
+    <div id="chat-box">
+        <div id="chat-header">
+            <span>BuilderBot</span>
+            <button onclick="toggleChat()">✖</button>
+        </div>
+        <div id="chat-history"></div>
+        <input type="text" id="chat-input" placeholder="Type a question..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
 </div>
+
+<!-- Chatbot Styles -->
+<style>
+    #chat-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    #chat-toggle {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #chat-box {
+        display: none;
+        width: 320px;
+        height: 400px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #chat-header {
+        display: flex;
+        justify-content: space-between;
+        background: #007bff;
+        color: white;
+        padding: 10px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    #chat-history {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #chat-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+
+    #chat-box button {
+        width: 15%;
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+</style>
+
+<!-- Chatbot JavaScript -->
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        localStorage.removeItem("chatHistory"); // Clears stored history
+        document.getElementById("chat-history").innerHTML = ""; // Clears UI
+    });
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        getRandomBotName(); // Pick and store a random bot name when the page loads
+        loadChatHistory();
+    });
+
+
+    function toggleChat() {
+        var chatBox = document.getElementById("chat-box");
+        chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+    }
+
+    function sendMessage() {
+        var questionInput = document.getElementById("chat-input");
+        var question = questionInput.value.trim();
+
+        if (!question) return;
+        
+        fetch('/ChatbotQA/AskQuestion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: question })
+        })
+        .then(response => response.json())
+        .then(data => {
+            updateChatHistory(question, data.answer);
+            saveChatHistory();
+        });
+
+        questionInput.value = "";
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    }
+
+    // List of random bot names
+    const botNames = ["Robert", "James", "Steve", "Maria", "Stefan", "Jacob", "Victor"];
+    // Variable to store the selected bot name
+    let botName = "";
+
+    // Function to get a random bot name (called only once)
+    function getRandomBotName() {
+        // Check if the bot name is already set
+        if (!botName) {
+            const randomIndex = Math.floor(Math.random() * botNames.length);
+            botName = botNames[randomIndex]; // Set the random bot name for this session
+        }
+        return botName;
+    }
+ 
+
+    function updateChatHistory(question, answer) {
+        var chatHistory = document.getElementById("chat-history");
+        var userMessage = `<div><strong>You:</strong> ${question}</div>`;        
+        var botMessage = `<div><strong>${getRandomBotName()}:</strong> ${answer}</div>`;
+
+        
+        chatHistory.innerHTML += userMessage + botMessage;
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+
+    function saveChatHistory() {
+        localStorage.setItem("chatHistory", document.getElementById("chat-history").innerHTML);
+    }
+
+    function loadChatHistory() {
+        var savedHistory = localStorage.getItem("chatHistory");
+        if (savedHistory) {
+            document.getElementById("chat-history").innerHTML = savedHistory;
+        }
+    }
+</script>

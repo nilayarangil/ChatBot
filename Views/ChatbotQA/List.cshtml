@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<ChatBot.Models.Entities.ChatbotQA>
+
+<h1>Question and Answers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Question</th>
+            <th>Answer</th>            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chatbotQA in Model)
+        {
+            <tr>
+                <td>@chatbotQA.Id</td>
+                <td>@chatbotQA.Question</td>
+                <td>@chatbotQA.Answer</td>                
+                <td>
+                    <a class="btn btn-primary" asp-controller="ChatbotQA" asp-action="Edit" asp-route-id="@chatbotQA.Id">Edit</a>
+                </td>
+                <td>
+
+                    <a class="btn btn-danger" asp-controller="ChatbotQA" asp-action="Delete" asp-route-id="@chatbotQA.Id">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
