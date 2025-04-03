@@ -1,4 +1,5 @@
 # ChatBot
+![Alt Text](https://github.com/nilayarangil/nilayarangil.github.io/blob/main/assets/img/bot.jpg)
 
 This project is a simple chatbot built with **ASP.NET MVC** and **Bootstrap**. It allows users to interact with a chatbot that answers questions based on pre-defined question-answer pairs stored in a database.
 
@@ -50,6 +51,7 @@ dotnet ef database update
 
 4. **Adding/Editing Questions**: Administrators can add, edit, or delete predefined question-answer pairs from the database via the admin panel (`/ChatbotQA/List`). \
 
+![Alt Text](https://github.com/nilayarangil/nilayarangil.github.io/blob/main/assets/img/bot2.jpg)
 
 
 ## **Bot Name Randomization**
@@ -105,7 +107,9 @@ You can easily customize the bot’s responses and the names it uses by modifyin
 ### **Add/Edit Questions:**
 
 To add new questions or change existing ones, you can either use the **admin panel** (via the `ChatbotQAController`) or directly update the database with new entries.
-
+![Alt Text](https://github.com/nilayarangil/nilayarangil.github.io/blob/main/assets/img/bot3.jpg)
+To edit a question and asnwer, you can either use the **admin panel** (via the `ChatbotQAController`) or directly update the database with new entries.
+![Alt Text](https://github.com/nilayarangil/nilayarangil.github.io/blob/main/assets/img/bot4.jpg)
 
 ### **Modify Chatbox UI:**
 
