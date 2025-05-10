@@ -1,304 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ROX Hi Tech Chatbot</title>
-    <style>
-        /* (your existing styles unchanged) */
-	#chatHeader {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  <meta charset="UTF-8" />
+  <title>ROX Hi Tech Chatbot</title>
+  <style>
+    #chatHeader {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        #chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 320px;
-            height: 500px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background: white;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            font-family: Arial, sans-serif;
-            font-size:small;
-            transition: all 0.3s ease;
-        }
-	#chatContent {
-	    display: flex;
-	    flex-direction: column;
-	    height: 450px;
-	}
-        #chatDisplay {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-        }
-        #userInput {
-            display: flex;
-            padding: 5px;
-            border-top: 1px solid #ccc;
-        }
-        #userInput input {
-            flex: 1;
-	    padding: 10px;
-	    border: 1px solid #ccc;
-	    border-radius: 5px;
-	    outline: none;
-	    font-size: 14px;
-	    transition: all 0.3s;
-        }
-	#userInput input:focus {
-	    border-color: #007bff;
-	}
-        #userInput button {
-	    padding: 10px 16px;
-	    margin-left: 10px;
-	    background-color: #007bff;
-	    color: white;
-	    border: none;
-	    border-radius: 5px;
-	    cursor: pointer;
-	    font-size: 14px;
-	    transition: background-color 0.3s;
-	}
-	#userInput button:hover {
-	    background-color: #0056b3;
-	}
-        .option-btn {
-            display: block;
-            margin: 5px 0;
-            padding: 8px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-            text-align: left;
-        }
-        .option-btn:hover {
-            background-color: #0056b3;
-        }
-        a {
-            color: white;
-            text-decoration: none;
-        }
-        .main-menu-btn 
-	{
-   	    display: block;
-	    margin: 5px 0;
-	    padding: 8px;
-	    background-color: #28a745; /* green */
-	    color: white;
-	    border: none;
-	    border-radius: 5px;
-	    width: 100%;
-	    cursor: pointer;
-	    text-align: left;
-	}
-	.main-menu-btn:hover {
-	    background-color: #1e7e34; /* darker green on hover */
-	}
-	#toggleIcon {
-	    font-size: 20px;
-	}
-    </style>
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: white;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      font-family: Arial, sans-serif;
+      font-size: small;
+      transition: all 0.3s ease;
+    }
+
+    #chatContent {
+      display: flex;
+      flex-direction: column;
+      height: 450px;
+    }
+
+    #chatDisplay {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    #userInput {
+      display: flex;
+      padding: 5px;
+      border-top: 1px solid #ccc;
+    }
+
+    #userInput input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #userInput input:focus {
+      border-color: #007bff;
+    }
+
+    #userInput button {
+      padding: 10px 16px;
+      margin-left: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #userInput button:hover {
+      background-color: #0056b3;
+    }
+
+    .option-btn {
+      display: block;
+      margin: 5px 0;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+      color: white;
+    }
+
+    .option-btn.yes {
+      background-color: #007bff;
+    }
+
+    .option-btn.yes:hover {
+      background-color: #0056b3;
+    }
+
+    .option-btn.no {
+      background-color: #6c757d;
+    }
+
+    .option-btn.no:hover {
+      background-color: #5a6268;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .main-menu-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+      padding: 8px;
+      margin: 5px 0;
+    }
+
+    .main-menu-btn:hover {
+      background-color: #c82333;
+    }
+
+    #toggleIcon {
+      font-size: 20px;
+    }
+  </style>
 </head>
 <body>
-
-<div id="chatbot">
-    <div id="chatHeader" onclick="toggleChat()">
-        ROX Hi Tech Assistant
-        <span id="toggleIcon">−</span>
-    </div>
+  <div id="chatbot">
+    <div id="chatHeader" onclick="toggleChat()">ROX Hi Tech Assistant <span id="toggleIcon">−</span></div>
     <div id="chatContent">
-        <div id="chatDisplay"></div>
-        <div id="userInput">
-            <input type="text" id="userText" placeholder="Type here...">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+      <div id="chatDisplay"></div>
+      <div id="userInput">
+        <input type="text" id="userText" placeholder="Type here..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
     </div>
-</div>
+  </div>
 
-<script>
+  <script>
     let step = 0;
-    let userData = { name: "", email: "", phone: "" };
+    let userData = { name: "", email: "", phone: "", ip: "" };
 
     function sendMessage() {
-        let input = document.getElementById('userText').value.trim();
-        if (input !== '') {
-            showUserMessage(input);
-            processInput(input);
-            document.getElementById('userText').value = '';
-        }
+      let input = document.getElementById("userText").value.trim();
+      if (input !== "") {
+        showUserMessage(input);
+        processInput(input);
+        document.getElementById("userText").value = "";
+      }
     }
 
     function showUserMessage(msg) {
-        const chat = document.getElementById('chatDisplay');
-        chat.innerHTML += `<div style="text-align: right; margin-bottom: 10px;"><strong>You:</strong> ${msg}</div>`;
-        chat.scrollTop = chat.scrollHeight;
+      const chat = document.getElementById("chatDisplay");
+      chat.innerHTML = `<div style="text-align: right; margin-bottom: 10px;"><strong>You:</strong> ${msg}</div>`;
+      chat.scrollTop = chat.scrollHeight;
     }
 
     function showBotMessage(msg) {
-        const chat = document.getElementById('chatDisplay');
-        chat.innerHTML += `<div style="text-align: left; margin-bottom: 10px;"><strong>Assistant:</strong> ${msg}</div>`;
-        chat.scrollTop = chat.scrollHeight;
+      const chat = document.getElementById("chatDisplay");
+      chat.innerHTML = `<div style="text-align: left; margin-bottom: 10px;"><strong>Rox:</strong> ${msg}</div>`;
+      chat.scrollTop = chat.scrollHeight;
     }
 
     function showOptions(options) {
-        const chat = document.getElementById('chatDisplay');
-        options.forEach(opt => {
-            if (opt.url) {
-                chat.innerHTML += `<button class="option-btn"><a href="${opt.url}" target="_blank">${opt.label}</a></button>`;
-            } else {
-                chat.innerHTML += `<button class="option-btn" onclick="processInput('${opt.label}')">${opt.label}</button>`;
-            }
-        });
-        chat.scrollTop = chat.scrollHeight;
-    }
-    
-    function saveUserData() {
-	    fetch('/Chat/SaveUserInfo', {
-	    method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData)
-     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log("User data saved successfully!");
+      const chat = document.getElementById("chatDisplay");
+      options.forEach(opt => {
+        let btnClass = "";
+        const labelLower = opt.label.toLowerCase();
+        if (labelLower === "yes") btnClass = "yes";
+        else if (labelLower === "no") btnClass = "no";
+        else if (labelLower === "main menu") btnClass = "main-menu-btn";
+        else btnClass = "option-btn";
+
+        if (opt.url) {
+          chat.innerHTML += `<button class="option-btn ${btnClass}"><a href="${opt.url}" target="_blank">${opt.label}</a></button>`;
         } else {
-            console.error("Error saving user data: " + data.message);
+          chat.innerHTML += `<button class="option-btn ${btnClass}" onclick="processInput('${opt.label}')">${opt.label}</button>`;
         }
-     })
-    .catch(error => console.error('Error:', error));
+      });
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function saveUserData() {
+      fetch("https://api.ipify.org?format=json")
+        .then(res => res.json())
+        .then(ipData => {
+          userData.ip = ipData.ip;
+          submitUserData();
+        })
+        .catch(() => {
+          submitUserData(); // fallback without IP
+        });
+    }
+
+    function submitUserData() {
+      fetch("/Chat/SaveUserInfo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData)
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log("User data saved successfully!");
+          } else {
+            console.error("Error saving user data: " + data.message);
+          }
+        })
+        .catch(error => console.error("Error:", error));
     }
 
     function processInput(input) {
-        if (input.toLowerCase() === 'main menu') {
-            showMainMenu();
-            return;
+      if (input.toLowerCase() === "main menu") {
+        showMainMenu();
+        return;
+      }
+
+      if (step === 0) {
+        userData.name = input;
+        showBotMessage("Thanks! What's your email?");
+        step++;
+      } else if (step === 1) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(input)) {
+          showBotMessage("Please enter a valid email address.");
+          return;
         }
-        if (step === 0) {
-            userData.name = input;
-            showBotMessage("Thanks! What's your email?");
-            step++;
-        } else if (step === 1) {
-            userData.email = input;
-            showBotMessage("Great! Finally, your phone number please?");
-            step++;
-        } else if (step === 2) {
-            userData.phone = input;
-            showBotMessage(`Hello ${userData.name}! Welcome to ROX Hi Tech. How can I assist you today?`);
-            saveUserData();  // <-- Save to DB here            
-            showMainMenu();
-            document.getElementById('userInput').style.display = 'none'; 
-            step++;
-        } else {
-            handleMainOptions(input);
-        }
+        userData.email = input;
+        showBotMessage("Great! Finally, your phone number please? (Include country code)");
+        step++;
+      } else if (step === 2) {
+        userData.phone = input;
+        showBotMessage(`Hello ${userData.name}! Welcome to ROX Hi Tech. How can I assist you today?`);
+        saveUserData();
+        showMainMenu();
+        document.getElementById("userInput").style.display = "none";
+        step++;
+      } else {
+        handleMainOptions(input);
+      }
     }
 
     function handleMainOptions(input) {
-        input = input.toLowerCase();
-        if (input.includes("about")) {
-            showBotMessage("Would you like to learn about our company background, leadership, achievements, or partnerships?");
-            showOptions([{ label: "Yes", url: "https://www.rox.co.in/company/about-us-basic/index.html" }, { label: "No" }, { label: "Main Menu" }]);
-        } else if (input.includes("explore services")) {
-            showBotMessage("How would you like to explore our services?");
-            showOptions([
-                { label: "By Industry", url: "https://www.rox.co.in/services/end-point-solution/index.html" }, 
-                { label: "By Technology", url: "https://www.rox.co.in/services/end-point-solution/solution_enterprise_infra.html" }, 
-                { label: "Case Studies", url: "https://www.rox.co.in/services/end-point-solution/index.html" }, 
-                { label: "View All Offerings", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Main Menu" }
-            ]);
-        } else if (input.includes("explore by technology")) {
-            showBotMessage("What technology area are you interested in?");
-            showOptions([
-                { label: "SAP - ERP", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Intelligent Automation", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Infrastructure Products and Services", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Networking & Collaboration Solutions", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Cybersecurity Solutions", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "End User Computing", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Managed and Professional Services", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Main Menu" }
-            ]);
-        } else if (input.includes("case studies")) {
-            showBotMessage("Choose a domain to view client Success Stories");
-            showOptions([
-                { label: "Manufacturing", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Healthcare", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "GOVT / PSU", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Retail", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "EDU", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
-                { label: "Main Menu" }
-            ]);
-        } else if (input.includes("book") || input.includes("consultation") || input.includes("demo")) {
-             /* showBotMessage("Great! Please share your name, email, preferred time and area of interest. Our team will reach out shortly."); */
-            window.open("https://www.rox.co.in/company/about-us-basic/index.html", "_blank");
-        } else if (input.includes("support")) {
-            window.open("https://www.rox.co.in/company/about-us-basic/index.html", "_blank");
-        } else if (input.includes("careers")) {
-            showBotMessage("Interested in joining ROX Hi Tech? Choose your path below.");
-            showOptions([
-                { label: "Request Callback", url: "https://www.rox.co.in/company/about-us-basic/index.html" },
-                { label: "Email Us", url: "https://www.rox.co.in/company/about-us-basic/index.html" },
-                { label: "Main Menu" }
-            ]);
-        } else if (input.includes("contact")) {
-            showBotMessage("How would you like to connect with us?");
-            showOptions([
-                { label: "Request Callback", url: "tel:+919510002651" },
-                { label: "Email Us", url: "mailto:contactus@rox.co.in" },
-                { label: "Main Menu" }
-            ]);
-        } else if (input.includes("feedback")) {
-            showBotMessage("Was this conversation helpful?");
-            showOptions([{ label: "Yes", url: "https://www.rox.co.in/company/about-us-basic/index.html" }, { label: "No" }, { label: "Main Menu" }]);
-        } else {
-            showBotMessage("I’m sorry, I didn’t quite get that. Could you rephrase or select an option below?");
-            showMainMenu();
-        }
+      input = input.toLowerCase();
+      if (input.includes("about")) {
+        showBotMessage("Would you like to learn about our company background, leadership, achievements, or partnerships?");
+        showOptions([
+          { label: "Yes", url: "https://www.rox.co.in/company/about-us-basic/index.html" },
+          { label: "No" },
+          { label: "Main Menu" }
+        ]);
+      } else if (input.includes("explore services")) {
+        showBotMessage("How would you like to explore our services?");
+        showOptions([
+          { label: "By Industry", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
+          { label: "By Technology", url: "https://www.rox.co.in/services/end-point-solution/solution_enterprise_infra.html" },
+          { label: "Case Studies", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
+          { label: "View All Offerings", url: "https://www.rox.co.in/services/end-point-solution/index.html" },
+          { label: "Main Menu" }
+        ]);
+      } else if (input.includes("feedback")) {
+        showBotMessage("Was this conversation helpful?");
+        showOptions([
+          { label: "Yes", url: "https://www.rox.co.in/company/about-us-basic/index.html" },
+          { label: "No" },
+          { label: "Main Menu" }
+        ]);
+      } else {
+        showBotMessage("I’m sorry, I didn’t quite get that. Could you rephrase or select an option below?");
+        showMainMenu();
+      }
     }
 
-   function showMainMenu() {
-    showBotMessage("Please make a selection");
-    const chat = document.getElementById('chatDisplay');
-    ["About ROX Hi Tech", "Explore Services", "Explore by Technology", "Case Studies & Client Wins", "Book a Consultation / Demo", "Support", "Careers", "Contact Us", "Feedback Collection"].forEach(option => {
+    function showMainMenu() {
+      showBotMessage("Please make a selection");
+      const chat = document.getElementById("chatDisplay");
+      [
+        "About ROX Hi Tech",
+        "Explore Services",
+        "Explore by Technology",
+        "Case Studies & Client Wins",
+        "Book a Consultation / Demo",
+        "Support",
+        "Careers",
+        "Contact Us",
+        "Feedback Collection"
+      ].forEach(option => {
         chat.innerHTML += `<button class="main-menu-btn" onclick="processInput('${option}')">${option}</button>`;
-    });
-    chat.scrollTop = chat.scrollHeight;
+      });
+      chat.scrollTop = chat.scrollHeight;
     }
 
-    window.onload = function() {
-        showBotMessage("Hi there! What's your name?");
-    }
-    
-  function toggleChat() {
-    const chatbot = document.getElementById('chatbot');
-    const icon = document.getElementById('toggleIcon');
-    if (chatbot.style.height === '50px') { // Minimized height
-        chatbot.style.height = '500px'; // Restore full height
-        icon.textContent = '−'; // minus symbol
-    } else {
-        chatbot.style.height = '50px'; // Minimized height
-        icon.textContent = '+'; // plus symbol
-    }
-}
-</script>
+    window.onload = function () {
+      showBotMessage("Hi there! What's your name?");
+    };
 
+    function toggleChat() {
+      const chatbot = document.getElementById("chatbot");
+      const icon = document.getElementById("toggleIcon");
+      if (chatbot.style.height === "50px") {
+        chatbot.style.height = "500px";
+        icon.textContent = "−";
+      } else {
+        chatbot.style.height = "50px";
+        icon.textContent = "+";
+      }
+    }
+  </script>
 </body>
 </html>
