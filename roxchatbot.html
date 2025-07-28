@@ -5,7 +5,7 @@
     <title>ROX Hi Tech Chatbot</title>
     <style>
         #chatHeader {
-            background-color: #007bff;
+            background-color: #2b323d;
             color: white;
             padding: 10px;
             font-size: 16px;
@@ -68,7 +68,7 @@
             #userInput button {
                 padding: 10px 16px;
                 margin-left: 10px;
-                background-color: #007bff;
+                background-color: #2b323d;
                 color: white;
                 border: none;
                 border-radius: 5px;
@@ -90,18 +90,19 @@
             cursor: pointer;
             text-align: left;
             color: white;
+            background-color:#ff0000;
         }
 
             .option-btn.yes {
-                background-color: #007bff;
+                background-color: #18813d;
             }
 
                 .option-btn.yes:hover {
-                    background-color: #0056b3;
+                    background-color: #368f55;
                 }
 
             .option-btn.no {
-                background-color: #6c757d;
+                background-color: #2b323d;
             }
 
                 .option-btn.no:hover {
@@ -114,7 +115,7 @@
         }
 
         .main-menu-btn {
-            background-color: #dc3545;
+            background-color: #ff0000;
             color: white;
             border: none;
             border-radius: 5px;
@@ -136,7 +137,7 @@
 </head>
 <body>
     <div id="chatbot">
-        <div id="chatHeader" onclick="toggleChat()">ROX Hi Tech Assistant <span id="toggleIcon">−</span></div>
+        <div id="chatHeader" onclick="toggleChat()">AskROX <span id="toggleIcon">−</span></div>
         <div id="chatContent">
             <div id="chatDisplay"></div>
             <div id="userInput">
@@ -662,7 +663,7 @@
                 showBotMessage("Thanks! What's your email?");
                 step++;
             } else if (step === 1) {
-                const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                const emailPattern = /^.+@.+$/;
                 if (!emailPattern.test(input)) {
                     showBotMessage("Please enter a valid email address.");
                     return;
